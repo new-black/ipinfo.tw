@@ -39,11 +39,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           target: release
-          build_args: |
+          build-args: |
             MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}
           tags: |
             cratecache.azurecr.io/new-black/eva-whoami:latest
             cratecache.azurecr.io/new-black/eva-whoami:${{ env.build_number }}
           builder: ${{ steps.buildx.outputs.name }}
-          images: |
-            cratecache.azurecr.io/new-black/henk2:${{ env.build_number }}
