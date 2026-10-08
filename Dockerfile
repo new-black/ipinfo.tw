@@ -1,4 +1,4 @@
-FROM alpine:3.23 as prepare
+FROM alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 as prepare
 
 ARG MAXMIND_LICENSE_KEY
 
@@ -25,7 +25,7 @@ RUN sed 's/GeoLite2-City_[0-9]*.tar.gz/GeoLite2-City.tar.gz/g' -i GeoLite2-City.
 RUN sha256sum -c GeoLite2-City.tar.gz.sha256
 RUN tar xvf GeoLite2-City.tar.gz --strip 1
 
-FROM alpine:3.23 as release
+FROM alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0 as release
 LABEL name="ipinfo.tw"
 RUN mkdir -p /run/nginx/ /usr/share/GeoIP/
 COPY --from=prepare /GeoLite2/*.mmdb /usr/share/GeoIP/
